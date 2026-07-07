@@ -1,0 +1,62 @@
+<div class="modal-backdrop" (click)="onCancel()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <h2>{{ isEditMode ? 'Edit Application' : 'Add Application' }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label>
+        Company *
+        <input formControlName="company" type="text" placeholder="e.g. Acme Corp" />
+      </label>
+
+      <label>
+        Role *
+        <input formControlName="role" type="text" placeholder="e.g. Frontend Developer" />
+      </label>
+
+      <label>
+        Status
+        <select formControlName="status">
+          @for (s of statuses; track s) {
+            <option [value]="s">{{ s }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Date Applied
+        <input formControlName="dateApplied" type="date" />
+      </label>
+
+      <label>
+        Job Link
+        <input formControlName="link" type="url" placeholder="https://..." />
+      </label>
+
+      <label>
+        Contact Name
+        <input formControlName="contactName" type="text" />
+      </label>
+
+      <label>
+        Salary Range
+        <input formControlName="salaryRange" type="text" placeholder="e.g. $70k - $85k" />
+      </label>
+
+      <label>
+        Notes
+        <textarea formControlName="notes" rows="3"></textarea>
+      </label>
+
+      @if (errorMessage()) {
+        <p class="error">{{ errorMessage() }}</p>
+      }
+
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" (click)="onCancel()">Cancel</button>
+        <button type="submit" class="btn-primary" [disabled]="submitting()">
+          {{ submitting() ? 'Saving...' : 'Save' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

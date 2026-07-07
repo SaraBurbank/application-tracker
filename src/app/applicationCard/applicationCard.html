@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-top">
+    <h3>{{ application().role }}</h3>
+    <div class="card-actions">
+      <button class="icon-btn" (click)="onEditClick($event)" title="Edit">✎</button>
+      <button class="icon-btn" (click)="onDeleteClick($event)" title="Delete">✕</button>
+    </div>
+  </div>
+
+  <p class="company">{{ application().company }}</p>
+
+  @if (application().salaryRange) {
+    <p class="salary">{{ application().salaryRange }}</p>
+  }
+
+  @if (application().dateApplied) {
+    <p class="date">Applied {{ application().dateApplied | date: 'MMM d, y' }}</p>
+  }
+</div>
