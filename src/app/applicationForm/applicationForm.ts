@@ -7,8 +7,8 @@ import { Application, ApplicationStatus } from '../application.model';
   selector: 'app-application-form',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './application-form.component.html',
-  styleUrls: ['./application-form.component.scss'],
+  templateUrl: './applicationForm.html',
+  // styleUrls: ['./applicationForm.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApplicationFormComponent {

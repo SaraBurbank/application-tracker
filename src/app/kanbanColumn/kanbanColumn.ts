@@ -7,8 +7,8 @@ import { ApplicationCardComponent } from '../applicationCard/applicationCard';
   selector: 'app-kanban-column',
   standalone: true,
   imports: [DragDropModule, ApplicationCardComponent],
-  templateUrl: './kanban-column.component.html',
-  styleUrls: ['./kanban-column.component.scss'],
+  templateUrl: './kanbanColumn.html',
+  // styleUrls: ['./kanbanColumn.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KanbanColumnComponent {

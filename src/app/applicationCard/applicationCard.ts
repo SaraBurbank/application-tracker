@@ -6,8 +6,8 @@ import { Application } from '../application.model';
   selector: 'app-application-card',
   standalone: true,
   imports: [DatePipe],
-  templateUrl: './application-card.component.html',
-  styleUrls: ['./application-card.component.scss'],
+  templateUrl: './applicationCard.html',
+  // styleUrls: ['./applicationCard.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApplicationCardComponent {

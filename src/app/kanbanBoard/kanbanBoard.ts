@@ -9,8 +9,8 @@ import { ApplicationFormComponent } from '../applicationForm/applicationForm';
   selector: 'app-kanban-board',
   standalone: true,
   imports: [DragDropModule, KanbanColumnComponent, ApplicationFormComponent],
-  templateUrl: './kanban-board.component.html',
-  styleUrls: ['./kanban-board.component.scss'],
+  templateUrl: './kanbanBoard.html',
+  // styleUrls: ['./kanbanBoard.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class KanbanBoardComponent {
