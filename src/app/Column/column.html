@@ -1,9 +1,9 @@
 <div class="kanban-column rounded-3 shadow-sm h-100 d-flex flex-column overflow-hidden">
   <div class="column-header d-flex justify-content-between align-items-center px-3 py-2" [ngClass]="headerClass">
     <div class="d-flex align-items-center gap-2">
-      <span class="fw-semibold text-dark">{{ status() }}</span>
-      <span>-</span>
-      <span class="badge rounded-pill bg-white text-dark fw-semibold">{{ applications().length }}</span>
+      <span class="fw-semibold text-white">{{ status() }}</span>
+      <span class="fw-semibold text-white">-</span>
+      <span class="badge rounded-pill bg-white text-dark fw-semibold" [class.badge-pulse]="badgePulse()">{{ count() }}</span>
     </div>
     <button
       class="btn btn-sm btn-add-column text-white d-flex align-items-center justify-content-center p-0"
@@ -24,6 +24,8 @@
       <app-application-card
         [application]="app"
         cdkDrag
+        animate.enter="card-enter"
+        animate.leave="card-leave"
         (edit)="edit.emit($event)"
         (delete)="delete.emit($event)"
       ></app-application-card>

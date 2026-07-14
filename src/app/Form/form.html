@@ -1,5 +1,5 @@
-<div class="modal fade show d-block" tabindex="-1" (click)="onCancel()">
-  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+<div class="modal fade show d-block" tabindex="-1" (click)="onCancel()" animate.enter="modal-fade-enter">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()" animate.enter="dialog-enter" animate.leave="dialog-leave">
     <div class="modal-content rounded-3 border-0 shadow">
       <div class="modal-header border-0 pb-0">
         <h2 class="modal-title h5 fw-semibold">{{ isEditMode ? 'Edit Application' : 'Add Application' }}</h2>
@@ -121,10 +121,10 @@
               type="text"
               class="form-control"
               [class.is-invalid]="isInvalid('link')"
-              placeholder="e.g. company.com/careers/123"
+              placeholder="e.g. www.company.com/careers/123"
             />
             @if (isInvalid('link')) {
-              <div class="invalid-feedback">Enter a valid URL, e.g. company.com/careers/123.</div>
+              <div class="invalid-feedback">Enter a valid URL, e.g. www.company.com/careers/123.</div>
             }
           </div>
 
@@ -163,4 +163,4 @@
     </div>
   </div>
 </div>
-<div class="modal-backdrop fade show"></div>
+<div class="modal-backdrop fade show" animate.enter="backdrop-fade-enter" animate.leave="backdrop-fade-leave"></div>

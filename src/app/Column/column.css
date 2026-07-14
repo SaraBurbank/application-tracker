@@ -1,0 +1,90 @@
+.kanban-column {
+  background: #f4f6fb;
+  min-height: 200px;
+}
+
+.column-header {
+  background: #6b7280;
+}
+
+.header-applied {
+  background: linear-gradient(135deg, #4f7cff, #3b63e0);
+}
+
+.header-interviewing {
+  background: linear-gradient(135deg, #f6a94a, #e8862a);
+}
+
+.header-offer {
+  background: linear-gradient(135deg, #2bc0a1, #159c82);
+}
+
+.header-rejected {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+}
+
+.btn-add-column {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  font-size: 0.9rem;
+  line-height: 1;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.badge {
+  display: inline-block; 
+}
+
+.badge-pulse {
+  animation: badge-pulse-keyframes 0.35s ease-out;
+}
+@keyframes badge-pulse-keyframes {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+ 
+.column-body {
+  overflow-y: auto;
+  max-height: 75vh;
+}
+
+.card-enter {
+  animation: card-enter-keyframes 0.25s ease-out;
+}
+@keyframes card-enter-keyframes {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-leave {
+  animation: card-leave-keyframes 0.18s ease-in forwards;
+}
+@keyframes card-leave-keyframes {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
