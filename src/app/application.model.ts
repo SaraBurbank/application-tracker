@@ -7,7 +7,7 @@ export interface Application {
   status: ApplicationStatus;
   dateApplied?: string;
   link?: string;
-  contactName?: string;
+  resumeUsed?: string;
   salaryRange?: string;
   notes?: string;
   order?: number;

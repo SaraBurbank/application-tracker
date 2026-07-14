@@ -1,0 +1,36 @@
+<div class="kanban-column rounded-3 shadow-sm h-100 d-flex flex-column overflow-hidden">
+  <div class="column-header d-flex justify-content-between align-items-center px-3 py-2" [ngClass]="headerClass">
+    <div class="d-flex align-items-center gap-2">
+      <span class="fw-semibold text-dark">{{ status() }}</span>
+      <span>-</span>
+      <span class="badge rounded-pill bg-white text-dark fw-semibold">{{ applications().length }}</span>
+    </div>
+    <button
+      class="btn btn-sm btn-add-column text-white d-flex align-items-center justify-content-center p-0"
+      (click)="addRequested.emit(status())"
+      title="Add to {{ status() }}"
+    >
+      +
+    </button>
+  </div>
+
+  <div
+    class="column-body flex-grow-1 p-2"
+    cdkDropList
+    [cdkDropListData]="applications()"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    @for (app of applications(); track app._id) {
+      <app-application-card
+        [application]="app"
+        cdkDrag
+        (edit)="edit.emit($event)"
+        (delete)="delete.emit($event)"
+      ></app-application-card>
+    }
+
+    @if (applications().length === 0) {
+      <p class="text-center text-muted small py-4 mb-0">No applications in this stage yet.</p>
+    }
+  </div>
+</div>

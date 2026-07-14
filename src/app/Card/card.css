@@ -1,0 +1,72 @@
+.app-card {
+  cursor: grab;
+  background: #ffffff;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.avatar-circle {
+  border-radius: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  background: #eef1f6;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  padding: 0.1rem 0.35rem;
+  line-height: 1;
+  font-size: 0.85rem;
+
+  &:hover {
+    color: #374151;
+  }
+}
+
+.btn-icon-notes {
+  background: none;
+  border: none;
+  line-height: 1;
+  font-size: 0.85rem;
+  opacity: 0.75;
+ 
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.salary-badge {
+  background: #eaf1ff;
+  color: #3b63e0;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+}
+
+.notes-panel {
+  background: #f8f9fb;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  white-space: pre-wrap;
+}
+
+::ng-deep .cdk-drag-preview {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep .cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+::ng-deep .cdk-drop-list-dragging .cdk-drag {
+  transition: transform 200ms ease;
+}

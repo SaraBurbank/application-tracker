@@ -26,7 +26,7 @@ const applicationSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    contactName: {
+    resumeUsed: {
       type: String,
       trim: true,
     },
@@ -38,7 +38,6 @@ const applicationSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    // Used to preserve manual card order within a Kanban column
     order: {
       type: Number,
       default: 0,

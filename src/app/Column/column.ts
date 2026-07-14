@@ -1,27 +1,31 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { Application, ApplicationStatus } from '../application.model';
-import { ApplicationCardComponent } from '../applicationCard/applicationCard';
+import { CardComponent } from '../Card/card';
 
 @Component({
-  selector: 'app-kanban-column',
+  selector: 'app-column',
   standalone: true,
-  imports: [DragDropModule, ApplicationCardComponent],
-  templateUrl: './kanbanColumn.html',
-  // styleUrls: ['./kanbanColumn.scss'],
+  imports: [NgClass, DragDropModule, CardComponent],
+  templateUrl: './column.html',
+  styleUrls: ['./column.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KanbanColumnComponent {
-  // Signal inputs are the current recommended replacement for @Input().
+export class ColumnComponent {
   status = input.required<ApplicationStatus>();
   applications = input.required<Application[]>();
 
-  // Signal-based outputs, replacing EventEmitter + @Output().
   dropped = output<CdkDragDrop<Application[]>>();
+  addRequested = output<ApplicationStatus>();
   edit = output<Application>();
   delete = output<Application>();
 
   onDrop(event: CdkDragDrop<Application[]>): void {
     this.dropped.emit(event);
+  }
+  
+  get headerClass(): string {
+    return 'header-' + this.status().toLowerCase();
   }
 }

@@ -1,0 +1,46 @@
+<div class="container-fluid main-board py-4 px-4">
+
+  <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+    <div>
+      <h1 class="fw-bold h3 mb-1">Job Application Tracker</h1>
+      <p class="text-muted mb-0 small">Track every application from first click to offer</p>
+    </div>
+    <button class="btn btn-primary d-flex align-items-center gap-2 px-3 rounded-3" (click)="openAddForm()">
+      <span class="fs-5 lh-1">+</span> Add Application
+    </button>
+  </div>
+
+  @if (loading()) {
+    <p class="text-muted">Loading applications...</p>
+  }
+
+  @if (errorMessage()) {
+    <p class="text-danger">{{ errorMessage() }}</p>
+  }
+
+  @if (!loading() && !errorMessage()) {
+    <div class="row g-3" cdkDropListGroup>
+      @for (status of statuses; track status) {
+        <div class="col-12 col-sm-6 col-lg-3">
+          <app-column
+            [status]="status"
+            [applications]="columns()[status]"
+            (dropped)="onCardDropped($event)"
+            (addRequested)="openAddForm($event)"
+            (edit)="openEditForm($event)"
+            (delete)="onDeleteApplication($event)"
+          ></app-column>
+        </div>
+      }
+    </div>
+  }
+
+  @if (isFormOpen()) {
+    <app-application-form
+      [applicationToEdit]="applicationBeingEdited()"
+      [defaultStatus]="defaultStatusForNew()"
+      (saved)="onFormSaved()"
+      (cancelled)="closeForm()"
+    ></app-application-form>
+  }
+</div>

@@ -3,7 +3,6 @@ const router = express.Router();
 const Application = require('../models/Application');
 
 // GET /api/applications
-// Returns all applications, sorted by status column order then manual order
 router.get('/', async (req, res) => {
   try {
     const applications = await Application.find().sort({ order: 1, createdAt: -1 });
@@ -37,8 +36,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT /api/applications/:id
-// Used both for full edits and for drag-and-drop status changes
+// PUT /api/applications/:id  ->  full edits and drag-and-drop status changes
 router.put('/:id', async (req, res) => {
   try {
     const updated = await Application.findByIdAndUpdate(

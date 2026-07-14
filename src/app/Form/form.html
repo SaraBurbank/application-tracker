@@ -1,0 +1,166 @@
+<div class="modal fade show d-block" tabindex="-1" (click)="onCancel()">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal-content rounded-3 border-0 shadow">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title h5 fw-semibold">{{ isEditMode ? 'Edit Application' : 'Add Application' }}</h2>
+        <button type="button" class="btn-close" (click)="onCancel()" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-body pt-2">
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Company *</label>
+            <input formControlName="company" type="text" class="form-control" placeholder="e.g. Acme Corp" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Role *</label>
+            <input formControlName="role" type="text" class="form-control" placeholder="e.g. Frontend Developer" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Status</label>
+            <select formControlName="status" class="form-select">
+              @for (s of statuses; track s) {
+                <option [value]="s">{{ s }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <label class="form-label small fw-semibold">Date Applied</label>
+              <input formControlName="dateApplied" type="date" class="form-control" />
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-semibold">Salary Range</label>
+              <input formControlName="salaryRange" type="text" class="form-control" placeholder="$70k - $85k" />
+            </div>
+          </div><div class="modal fade show d-block" tabindex="-1" (click)="onCancel()">
+  <div class="modal-dialog modal-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal-content rounded-3 border-0 shadow">
+      <div class="modal-header border-0 pb-0">
+        <h2 class="modal-title h5 fw-semibold">{{ isEditMode ? 'Edit Application' : 'Add Application' }}</h2>
+        <button type="button" class="btn-close" (click)="onCancel()" aria-label="Close"></button>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="modal-body pt-2">
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Company *</label>
+            <input
+              formControlName="company"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="isInvalid('company')"
+              placeholder="e.g. Acme Corp"
+            />
+            @if (isInvalid('company')) {
+              <div class="invalid-feedback">
+                @if (form.get('company')?.hasError('required')) {
+                  Company is required.
+                } @else if (form.get('company')?.hasError('minlength')) {
+                  Company name is too short.
+                }
+              </div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Role *</label>
+            <input
+              formControlName="role"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="isInvalid('role')"
+              placeholder="e.g. Frontend Developer"
+            />
+            @if (isInvalid('role')) {
+              <div class="invalid-feedback">
+                @if (form.get('role')?.hasError('required')) {
+                  Role is required.
+                } @else if (form.get('role')?.hasError('minlength')) {
+                  Role is too short.
+                }
+              </div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Status</label>
+            <select formControlName="status" class="form-select">
+              @for (s of statuses; track s) {
+                <option [value]="s">{{ s }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-6">
+              <label class="form-label small fw-semibold">Date Applied</label>
+              <input
+                formControlName="dateApplied"
+                type="date"
+                class="form-control"
+                [class.is-invalid]="isInvalid('dateApplied')"
+              />
+              @if (isInvalid('dateApplied')) {
+                <div class="invalid-feedback">Date can't be in the future.</div>
+              }
+            </div>
+            <div class="col-6">
+              <label class="form-label small fw-semibold">Salary Range</label>
+              <input formControlName="salaryRange" type="text" class="form-control" placeholder="$70k - $85k" />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Job Link</label>
+            <input
+              formControlName="link"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="isInvalid('link')"
+              placeholder="e.g. company.com/careers/123"
+            />
+            @if (isInvalid('link')) {
+              <div class="invalid-feedback">Enter a valid URL, e.g. company.com/careers/123.</div>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-semibold">Resume Used</label>
+            <input formControlName="resumeUsed" type="text" class="form-control" />
+          </div>
+
+          <div class="mb-1">
+            <label class="form-label small fw-semibold">Notes</label>
+            <textarea
+              formControlName="notes"
+              rows="3"
+              class="form-control"
+              [class.is-invalid]="isInvalid('notes')"
+            ></textarea>
+            @if (isInvalid('notes')) {
+              <div class="invalid-feedback">Notes can't exceed 500 characters.</div>
+            } @else {
+              <div class="form-text">{{ form.get('notes')?.value?.length || 0 }}/500</div>
+            }
+          </div>
+
+          @if (errorMessage()) {
+            <p class="text-danger small mb-0 mt-2">{{ errorMessage() }}</p>
+          }
+        </div>
+
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-outline-secondary rounded-3" (click)="onCancel()">Cancel</button>
+          <button type="submit" class="btn btn-primary rounded-3" [disabled]="submitting()">
+            {{ submitting() ? 'Saving...' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show"></div>

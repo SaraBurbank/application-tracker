@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Application } from '../application.model';
 
@@ -6,15 +6,22 @@ import { Application } from '../application.model';
   selector: 'app-application-card',
   standalone: true,
   imports: [DatePipe],
-  templateUrl: './applicationCard.html',
-  // styleUrls: ['./applicationCard.scss'],
+  templateUrl: './card.html',
+  styleUrls: ['./card.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ApplicationCardComponent {
+export class CardComponent {
   application = input.required<Application>();
 
   edit = output<Application>();
   delete = output<Application>();
+  resumeLabel = computed(() => this.application().resumeUsed ?? 'N/A');
+  showNotes = signal(false);
+
+  onToggleNotes(event: MouseEvent): void {
+    event.stopPropagation(); // don't let this trigger a drag
+    this.showNotes.update((value) => !value);
+  }
 
   onEditClick(event: MouseEvent): void {
     event.stopPropagation(); // don't let this trigger a drag
