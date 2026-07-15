@@ -4,6 +4,8 @@ import { ApplicationService } from '../application.service';
 import { Application, ApplicationStatus } from '../application.model';
 import { ColumnComponent } from '../Column/column';
 import { FormComponent } from '../Form/form';
+import { Router } from '@angular/router';
+import { AuthService } from '../Auth/auth.service';
 
 @Component({
   selector: 'app-board',
@@ -15,20 +17,20 @@ import { FormComponent } from '../Form/form';
 })
 export class BoardComponent {
   private readonly applicationService = inject(ApplicationService);
- 
-  // The four fixed columns, in display order.
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  currentUser = this.authService.currentUser;
   readonly statuses: ApplicationStatus[] = ['Applied', 'Interviewing', 'Offer', 'Rejected'];
  
   loading = signal(true);
   errorMessage = signal('');
- 
-  // Controls the add/edit form modal.
   isFormOpen = signal(false);
   applicationBeingEdited = signal<Application | null>(null);
+  
   // When adding via a column's "+" button, pre-selects that column's status.
   defaultStatusForNew = signal<ApplicationStatus | null>(null);
  
-  // Derived, read-only grouping of the service's `applications` signal.
   columns = computed<Record<ApplicationStatus, Application[]>>(() => {
     const grouped: Record<ApplicationStatus, Application[]> = {
       Applied: [],
@@ -124,5 +126,10 @@ export class BoardComponent {
       next: () => this.fetchApplications(),
       error: (err) => console.error('Failed to delete application', err),
     });
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

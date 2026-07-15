@@ -5,9 +5,15 @@
       <h1 class="fw-bold h3 mb-1">Job Application Tracker</h1>
       <p class="text-muted mb-0 small">Track every application from first click to offer</p>
     </div>
-    <button class="btn btn-primary d-flex align-items-center gap-2 px-3 rounded-3" (click)="openAddForm()">
-      <span class="fs-5 lh-1">+</span> Add Application
-    </button>
+    <div class="d-flex align-items-center gap-3">
+      @if (currentUser(); as user) {
+        <span class="text-muted small d-none d-sm-inline">{{ user.name || user.email }}</span>
+      }
+      <button class="btn btn-outline-secondary btn-sm rounded-3" (click)="onLogout()">Log Out</button>
+      <button class="btn btn-primary d-flex align-items-center gap-2 px-3 rounded-3" (click)="openAddForm()">
+        <span class="fs-5 lh-1">+</span> Add Application
+      </button>
+    </div>
   </div>
 
   @if (loading()) {
