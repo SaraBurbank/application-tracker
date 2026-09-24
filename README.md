@@ -1,59 +1,52 @@
 # ApplicationTracker
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+This software is a web app to help you during the process of looking for a job. I made this software to help me organize myself while looking for a job at the end of my college years.
 
-## Development server
+<!-- **Live demo:** <link> (demo login: demo@example.com / password)
+![Screenshot or GIF](docs/demo.gif) -->
 
-To start a local development server, run:
+## Features
+- Add any information from a job that has been applied. When it was applied, connections related to the job, related links, etc. 
+- Drag and move any job to any of the stages: Applied, Interviewing, Offer, and Rejected. 
 
-```bash
-ng serve
-```
+## Tech Stack
+Angular, Node.js, Express, MongoDB, GitHub Actions, ...
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Architecture
+Short paragraph or diagram: front end, API, database, where each is hosted.
 
-## Code scaffolding
+## Technical Decisions
+- Why you chose X over Y (signals, JWT, OnPush, etc.)
+- One challenge you solved and how
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Run Locally
+1. Clone the repo and run `npm install`
+2. Copy `.env.example` to `.env` and fill in values
+3. Run `npm start`
 
-```bash
-ng generate component component-name
-```
+## Testing
+How to run the tests, plus a CI badge.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Roadmap
+What you'd build next.
 
-```bash
-ng generate --help
-```
 
-## Building
+# Development Environment
 
-To build the project run:
+- VSCode
+- Angular CLI v21
 
-```bash
-ng build
-```
+# Useful Websites
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- [Angular CLI](https://angular.dev/tools/cli)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs/styling-with-utility-classes)
+- [Open AI Responses API Tutorial](https://www.youtube.com/watch?v=QF0v3dXg0Kg&t=300s)
 
-## Running unit tests
+# Future Work
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Parse pdf and docx files to txt so the AI accepts other file types other than txt
+- Add Tailored Cover Letter based on description
+- Tailored Resume Download (as pdf, docx, txt)
+- Change the formatting of the resume
+- Job recommendations that are similar to given job description
+- Add loading animations and better UI
